@@ -25,6 +25,7 @@
     },
 
     methods: {
+      // 将下一个元素显示出来
       next () {
         if (this.index == this.animations.length - 1) return;
         this.index += 1;

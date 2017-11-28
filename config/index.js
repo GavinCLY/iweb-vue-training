@@ -6,20 +6,26 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    // 配置代理
     proxyTable: {
       // http://localhost:8080/api/users
       // http://localhost:3000/api/users
+      // 拦截所有本地以/api/开头的请求
       '/api/': {
+        // 目标服务器ip及端口
         target: 'http://localhost:3000',
         changeOrigin: true,
+        // 路径重写
         pathRewrite: {
           '^/api': '/api'
         }
       },
+      // 上述配置的用意在与拦截本地http://localhost/api为开头的请求
+      // 转发到http://localhost:3000服务上
+      // 并根据pathRewrite的规则将路径进行改写，例如 '^/api': '/path/api'，实际请求的接口即为http://localhost:3000/path/api
     },
 
     // Various Dev Server settings
